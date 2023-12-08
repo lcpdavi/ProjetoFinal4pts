@@ -4,13 +4,8 @@
 
 // Estrutura veículo
 typedef struct{
-    char proprietario[10];
-    char combustivel[20];
-    char modelo[20];
-    char cor[20];
-    char chassi[30];
     int ano;
-    char placa[8];
+    char proprietario[10], combustivel[10], modelo[10], cor[10], chassi[30], placa[8];
     struct Veiculo* proximo;
 }Veiculo;
 
@@ -30,25 +25,25 @@ void inicializarListaVeiculos(ListaVeiculos *listaVeiculos){
 void adicionarVeiculo(ListaVeiculos *listaVeiculos){
     Veiculo novoVeiculo;
 
-    printf("Informe o nome do proprietario:\n");
+    printf("Nome do proprietario:\n");
     scanf("%s", novoVeiculo.proprietario);
 
-    printf("Informe o tipo de combustivel (alcool/diesel/gasolina):\n");
+    printf("Qual o tipo de combustivel (alcool/diesel/gasolina):\n");
     scanf("%s", novoVeiculo.combustivel);
 
-    printf("Informe o modelo do veiculo:\n");
+    printf("Modelo do veiculo:\n");
     scanf("%s", novoVeiculo.modelo);
 
-    printf("Informe a cor do veiculo:\n");
+    printf("Cor do veiculo:\n");
     scanf("%s", novoVeiculo.cor);
 
-    printf("Informe o numero do chassi:\n");
+    printf("Numero do chassi:\n");
     scanf("%s", novoVeiculo.chassi);
 
-    printf("Informe o ano do veiculo:\n");
+    printf("Ano do veiculo:\n");
     scanf("%d", &novoVeiculo.ano);
 
-    printf("Informe a placa do veiculo:\n");
+    printf("Placa do veiculo:\n");
     scanf("%s", novoVeiculo.placa);
 
     listaVeiculos->tamanho++;
@@ -84,7 +79,7 @@ void PlacasJ(ListaVeiculos *listaVeiculos){
 void ModeloCorVogalSomaPar(ListaVeiculos *listaVeiculos){
     printf("Modelo e cor dos veiculos cujas placas possuem como segunda letra uma vogal e cuja soma dos valores numericos fornece um numero par:\n");
     for(int i = 0; i < listaVeiculos->tamanho; i++) {
-        char vogais[] = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        char vogais[] = {'A', 'E', 'I', 'O', 'U','a', 'e', 'i', 'o', 'u'};
         if(strchr(vogais, listaVeiculos->veiculos[i].placa[1]) != NULL){
             int soma = 0;
             for(int j = 0; j < 7; j++){
@@ -118,7 +113,6 @@ void liberarListaVeiculos(ListaVeiculos *listaVeiculos){
     listaVeiculos->tamanho = 0;
 }
 
-// Funcao principal (menu)
 int main(){
     ListaVeiculos listaVeiculos;
     inicializarListaVeiculos(&listaVeiculos);
@@ -128,8 +122,8 @@ int main(){
     do{
         printf("\nMenu:\n");
         printf("1. Adicionar Veiculo.\n");
-        printf("2. Listar Proprietarios de Carros do Ano de 2010 ou Posterior e Movidos a Diesel.\n");
-        printf("3. Listar Placas que Comencam com a Letra J e Terminam com 0, 2, 4 ou 7 e Seus Respectivos Proprietarios.\n");
+        printf("2. Lista de Proprietarios de Carros do Ano de 2010 ou Posterior e Movidos a Diesel.\n");
+        printf("3. Lista de Placas que Comecam com a Letra J e Terminam com 0, 2, 4 ou 7 e Seus Respectivos Proprietarios.\n");
         printf("4. Listar Modelo e Cor dos Veiculos cujas Placas Possuem Como Segunda Letra uma Vogal e cuja Soma dos Valores Numericos Fornece um Numero Par.\n");
         printf("5. Trocar Proprietario com Fornecimento do Numero do Chassi para Carros com Placas que Nao Possuam Nenhum Digito Igual a Zero.\n");
         printf("0. Sair.\n");
@@ -152,7 +146,7 @@ int main(){
                 break;
             case 5: 
                 {
-                char chassiTroca[50], novoProprietario[50];
+                char chassiTroca[30], novoProprietario[10];
                 printf("Informe o numero do chassi:\n");
                 scanf("%s", chassiTroca);
                 printf("Informe o novo proprietario:\n");
